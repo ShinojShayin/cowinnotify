@@ -70,6 +70,7 @@ $("#vchecker").click(function () {
   if (vaccine_master.pincode != "") {
     if (!vaccine_master.runningcheck) {
       clearlog();
+      $("title").html("Checking Vaccine availability...");
       $("#pincode").attr("disabled", true);
       $("#interval").attr("disabled", true);
       $("#vcenter").attr("disabled", true);
@@ -81,6 +82,7 @@ $("#vchecker").click(function () {
       lognow("Started CoWin Notifier....");
       vchecker = setInterval(vcheckLogic, interval);
     } else {
+      $("title").html("CoWin Notifier");
       $("#pincode").attr("disabled", false);
       $("#interval").attr("disabled", false);
       $("#vcenter").attr("disabled", false);
@@ -213,6 +215,7 @@ document.addEventListener("DOMContentLoaded", function () {
 var audio = new Audio("notify.mp3");
 
 function notifyuser(centername, available, vaccinetype, payment) {
+  $("title").html("Vaccine Available!!!");
   audio.play();
   var notification = new Notification("Vaccine Available at " + centername, {
     icon: "vicon.png",
