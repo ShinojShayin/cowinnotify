@@ -10,6 +10,7 @@ This website use [CoWIN](https://www.cowin.gov.in/home) India API to monitor vac
 
 ## How to use
 - Go to [https://shinojshayin.github.io/cowinnotify/](https://shinojshayin.github.io/cowinnotify/)
+- When the website load it will initially ask for show notification permission please allow it
 - Provide pincode this action will list vaccine center available in that area
 - User can select any specific vaccination center this part is optional
 - Press on 'Start Checking' button to monitor vaccine availability based on the interval set (Default is 2 seconds) it will ping on cowin server which provide details releated to vaccine
