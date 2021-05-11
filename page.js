@@ -232,11 +232,6 @@ function notifyuser(centername, available, vaccinetype, payment) {
       " Fee-Type:" +
       payment,
   });
-
-  const options = {
-    icon: "vicon.png",
-  };
-  reg.showNotification(title, options);
 }
 
 $("#samplenotify").click(function () {
