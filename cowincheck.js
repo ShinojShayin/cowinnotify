@@ -1,3 +1,12 @@
+document.addEventListener("DOMContentLoaded", function () {
+  if (!Notification) {
+    alert("Desktop notifications not available in your browser. Try Chromium.");
+    return;
+  }
+
+  if (Notification.permission !== "granted") Notification.requestPermission();
+});
+
 function main() {
   console.log("main function");
   console.log("ajax request to the resource which will require cors enabled");
@@ -25,14 +34,7 @@ function main() {
   //   });
 }
 // request permission on page load
-document.addEventListener("DOMContentLoaded", function () {
-  if (!Notification) {
-    alert("Desktop notifications not available in your browser. Try Chromium.");
-    return;
-  }
 
-  if (Notification.permission !== "granted") Notification.requestPermission();
-});
 
 function notifyMe() {
   if (Notification.permission !== "granted") Notification.requestPermission();
