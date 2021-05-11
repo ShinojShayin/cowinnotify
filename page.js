@@ -5,16 +5,25 @@ var vaccine_master = {
   runningcheck: false,
 };
 
-function timerlog(cname, agelimit, vaccineType, availability) {
+function timerlog(cname, agelimit, vaccineType, availability, date) {
+  var dclass = "normal";
+  dclass = availability > 0 ? "green" : "normal";
   lognow(
-    "<b>Centername:</b> " +
+    "<span class='" +
+      dclass +
+      "'>" +
+      "<b>Centername:</b> " +
       cname +
       "(" +
       agelimit +
-      "+) <b>vaccine:</b> " +
+      "+) " +
+      " <b> Date:</b>" +
+      date +
+      " <b>vaccine:</b> " +
       vaccineType +
       " <b>Availability:</b> " +
-      availability
+      availability +
+      "</span>"
   );
 }
 
@@ -28,39 +37,55 @@ var vcheckLogic = function () {
     if (printbycenter) {
       centerArray.forEach(function (e) {
         if (e.name == vaccine_master.centername) {
-          if (e.sessions[0].available_capacity > 0) {
-            notifyuser(
-              e.name,
-              e.sessions[0].available_capacity,
-              e.sessions[0].vaccine,
-              e.fee_type
-            );
+          var centername = e.name;
+          var agelimit = null;
+          var vaccineType = null;
+          var available = null;
+          for (var i = 0; i < e.sessions.length; i++) {
+            agelimit = e.sessions[i].min_age_limit;
+            vaccineType = e.sessions[i].vaccine;
+            available = e.sessions[i].available_capacity;
+            avalableDate = e.sessions[i].date;
+            if (e.sessions[i].available_capacity > 0) {
+              notifyuser(
+                centername,
+                available,
+                vaccineType,
+                e.fee_type,
+                avalableDate
+              );
+              break;
+            }
           }
 
-          timerlog(
-            e.name,
-            e.sessions[0].min_age_limit,
-            e.sessions[0].vaccine,
-            e.sessions[0].available_capacity
-          );
+          timerlog(centername, agelimit, vaccineType, available, avalableDate);
         }
       });
     } else {
       centerArray.forEach(function (e) {
-        if (e.sessions[0].available_capacity > 0) {
-          notifyuser(
-            e.name,
-            e.sessions[0].available_capacity,
-            e.sessions[0].vaccine,
-            e.fee_type
-          );
+        var centername = e.name;
+        var agelimit = null;
+        var vaccineType = null;
+        var available = null;
+        var avalableDate = null;
+        for (var i = 0; i < e.sessions.length; i++) {
+          agelimit = e.sessions[i].min_age_limit;
+          vaccineType = e.sessions[i].vaccine;
+          available = e.sessions[i].available_capacity;
+          avalableDate = e.sessions[i].date;
+          if (e.sessions[i].available_capacity > 0) {
+            notifyuser(
+              centername,
+              available,
+              vaccineType,
+              e.fee_type,
+              avalableDate
+            );
+            break;
+          }
         }
-        timerlog(
-          e.name,
-          e.sessions[0].min_age_limit,
-          e.sessions[0].vaccine,
-          e.sessions[0].available_capacity
-        );
+
+        timerlog(centername, agelimit, vaccineType, available, avalableDate);
       });
     }
   });
@@ -203,6 +228,9 @@ function fetchCowin(date, pincode, callback) {
       date,
     success: function (data) {
       callback(data);
+    },
+    error: function (data) {
+      lognow("ERROR :: CoWIN Server not responding, retrying..");
     },
   });
 }
