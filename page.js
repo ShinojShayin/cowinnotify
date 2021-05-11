@@ -194,8 +194,10 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 $("#samplenotify").click(function () {
-  var notification = new Notification("Notification title", {
-    icon: "http://cdn.sstatic.net/stackexchange/img/logos/so/so-icon.png",
-    body: "Vaccing available at XYZ Center!<br> Availability: 10 <br>BOOK NOW",
+  var notification = new Notification("Vaccine Available: XYZ Center", {
+    icon: "vicon.png",
+    body: "Availabile: 10 Notified-Time: " + new Date().toLocaleTimeString(),
   });
 });
+
+console.log("Script v1.0");
