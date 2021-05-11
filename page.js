@@ -190,10 +190,10 @@ var loadhospitalselect = function (data) {
 
 $("#vcenter").change(function () {
   var val = $(this).val();
+  vaccine_master.centername = val;
   if (val === "") {
     lognow("You will be notified for vaccine avaliable in all centers");
   } else {
-    vaccine_master.centername = val;
     lognow("You will be notified for vaccine avaliable in '" + val + "' only");
   }
 });
