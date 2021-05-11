@@ -17,7 +17,7 @@
 		color: #8b8b8b;
     overflow: scroll;
 	}
-
+.mg-l-15{    margin-left: 5px;}
 #samplenotify{
   margin-left: 20px;
 }
@@ -26,21 +26,24 @@
 <body>
 
 <div class="container">
-  <h2>Browser CoWin Notifier</h2>
-  <p>A simple web-browser based notifier for notifying vaccine availablility in cowin website.</p>
+  <h1>CoWIN Notifier</h2>
+  <h5>A simple Web-browser based vaccine availability monitor and notifier. 
+    <a href="https://github.com/ShinojShayin/cowinnotify/blob/main/README.md" target="_blank">(click here for how to use document)</a>
+  </h5>
+  <br>
   <div class="form-inline" >
-    <div class="form-group">
+    <div class="form-group mg-l-15">
       <label class="sr-only" for="pincode">Pincode:</label>
       <input type="text" class="form-control" id="pincode" placeholder="Enter Pincode"  maxlength="6">
     </div>
-    <div class="form-group">
+    <div class="form-group mg-l-15">
       <label class="sr-only" for="vcenter">Vaccine centers:</label>
       <select id="vcenter" class="form-control" disabled>
 		<option id="hosp-select" value="">Specific Vaccine center (Optional)</option>
 		<option>Manipal</option>
 	  </select>
     </div>
-    <div class="checkbox">
+    <div class="checkbox mg-l-15">
       <label class="sr-only" for="interval">Interval to Check:</label>
 	  <select id="interval" class="form-control">
 		<option value="2000">Check every 2 Seconds</option>
@@ -50,7 +53,7 @@
     <option value="300000">Check every 5 minute</option>
 	  </select>
     </div>
-    <button id="vchecker" class="btn btn-primary">Start Checking</button>
+    <button id="vchecker" class="btn btn-primary mg-l-15">Start Checking</button>
     <button id="samplenotify" class="btn btn-default" title="If vaccine available following notification action will be perform! please click">Sample Notification</button>
 	<div id="log-area">
 	Monitoring Details Printed here once you start notifier
