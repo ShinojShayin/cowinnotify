@@ -28,6 +28,15 @@ var vcheckLogic = function () {
     if (printbycenter) {
       centerArray.forEach(function (e) {
         if (e.name == vaccine_master.centername) {
+          if (e.sessions[0].available_capacity > 0) {
+            notifyuser(
+              e.name,
+              e.sessions[0].available_capacity,
+              e.sessions[0].vaccine,
+              e.fee_type
+            );
+          }
+
           timerlog(
             e.name,
             e.sessions[0].min_age_limit,
@@ -38,6 +47,14 @@ var vcheckLogic = function () {
       });
     } else {
       centerArray.forEach(function (e) {
+        if (e.sessions[0].available_capacity > 0) {
+          notifyuser(
+            e.name,
+            e.sessions[0].available_capacity,
+            e.sessions[0].vaccine,
+            e.fee_type
+          );
+        }
         timerlog(
           e.name,
           e.sessions[0].min_age_limit,
@@ -61,7 +78,7 @@ $("#vchecker").click(function () {
       interval = parseInt(interval);
       console.log("interval: " + interval);
       vaccine_master.runningcheck = true;
-      lognow("Initializing CoWin Notifier....");
+      lognow("Started CoWin Notifier....");
       vchecker = setInterval(vcheckLogic, interval);
     } else {
       $("#pincode").attr("disabled", false);
@@ -193,11 +210,24 @@ document.addEventListener("DOMContentLoaded", function () {
   if (Notification.permission !== "granted") Notification.requestPermission();
 });
 
-$("#samplenotify").click(function () {
-  var notification = new Notification("Vaccine Available: XYZ Center", {
+var audio = new Audio("notify.mp3");
+
+function notifyuser(centername, available, vaccinetype, payment) {
+  audio.play();
+  var notification = new Notification("Vaccine Available at " + centername, {
     icon: "vicon.png",
-    body: "Availabile: 10 Notified-Time: " + new Date().toLocaleTimeString(),
+    body:
+      " Availabile: " +
+      available +
+      " vaccine: " +
+      vaccinetype +
+      " Fee-Type:" +
+      payment,
   });
+}
+
+$("#samplenotify").click(function () {
+  notifyuser("XYZ Hospital", 11, "Covishield", "Free");
 });
 
 console.log("Script v1.0");
