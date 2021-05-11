@@ -35,8 +35,10 @@ var vcheckLogic = function () {
     var printbycenter = vaccine_master.centername.length > 0;
 
     if (printbycenter) {
+      var centerAvailable = false;
       centerArray.forEach(function (e) {
         if (e.name == vaccine_master.centername) {
+          centerAvailable = true;
           var centername = e.name;
           var agelimit = null;
           var vaccineType = null;
@@ -61,6 +63,8 @@ var vcheckLogic = function () {
           timerlog(centername, agelimit, vaccineType, available, avalableDate);
         }
       });
+
+      if (!centerAvailable) lognow("For given center slot not available");
     } else {
       centerArray.forEach(function (e) {
         var centername = e.name;
