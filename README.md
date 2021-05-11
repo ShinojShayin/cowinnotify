@@ -20,5 +20,7 @@ This website use [CoWIN](https://www.cowin.gov.in/home) India API to monitor vac
 
 ![alt text](https://raw.githubusercontent.com/ShinojShayin/cowinnotify/main/desktopnotification.png)
 
+![alt text](https://raw.githubusercontent.com/ShinojShayin/cowinnotify/main/sample-page.png)
+
 
 
