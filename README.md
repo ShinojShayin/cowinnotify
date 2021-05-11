@@ -20,7 +20,7 @@ This website use [CoWIN](https://www.cowin.gov.in/home) India API to monitor vac
 
 ![alt text](https://raw.githubusercontent.com/ShinojShayin/cowinnotify/main/desktopnotification.png)
 
-This is how it look while monitoring 
+This is how it look while monitoring for vaccine availability.
 In the below image its looking for vaccine availability in pincode: 560066 and 'Manipal Hospital'
 
 ![alt text](https://raw.githubusercontent.com/ShinojShayin/cowinnotify/main/sample-page.png)
