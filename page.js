@@ -66,6 +66,10 @@ var vcheckLogic = function () {
   });
 };
 
+function resetTitle() {
+  $("title").html("CoWin Notifier");
+}
+
 $("#vchecker").click(function () {
   if (vaccine_master.pincode != "") {
     if (!vaccine_master.runningcheck) {
@@ -82,7 +86,7 @@ $("#vchecker").click(function () {
       lognow("Started CoWin Notifier....");
       vchecker = setInterval(vcheckLogic, interval);
     } else {
-      $("title").html("CoWin Notifier");
+      resetTitle();
       $("#pincode").attr("disabled", false);
       $("#interval").attr("disabled", false);
       $("#vcenter").attr("disabled", false);
@@ -231,6 +235,9 @@ function notifyuser(centername, available, vaccinetype, payment) {
 
 $("#samplenotify").click(function () {
   notifyuser("XYZ Hospital", 11, "Covishield", "Free");
+  setTimeout(function () {
+    resetTitle();
+  }, 3000);
 });
 
 console.log("Script v1.0");
