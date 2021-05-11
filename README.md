@@ -1,9 +1,18 @@
-# Browser CoWin Notifier
+# Cowin Notify (Browser-Based Notification only)
 
-A simple vaccine availability monitor for web-browser. This is the simplest Vaccine notifier available on the web.
+## A simple vaccine availability monitor for web-browser.
 
-For given pincode and vaccine center(Optional) it will monitor availability of the vaccine based on the interval configured by the user.
+This website use [CoWIN](https://www.cowin.gov.in/home) India API to monitor vaccine availability in india.
 
-If vaccine availability is found it play a sound also call browser based notification to alert user.
+## Requirement
 
-Inorder for the browser notification to work user should initial allow notification permission when the website loads
+> Latest Desktop Chrome browser (Tested only in this now)
+
+## How to use
+- Go to [https://shinojshayin.github.io/cowinnotify/](https://shinojshayin.github.io/cowinnotify/)
+- Provide pincode this action will list vaccine center available in that area
+- User can select any specific vaccination center this part is optional
+- Press on 'Start Checking' button to monitor vaccine availability based on the interval set (Default is 2 seconds) it will ping on cowin server which provide details releated to vaccine
+- Once checking/monitoring is started it will print the report of availability status in the screen real-time
+- If vaccine is found to be available it will play a alert song along with it will trigger a browser notification (Work better in Chrome) 
+
