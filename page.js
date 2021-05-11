@@ -213,7 +213,15 @@ document.addEventListener("DOMContentLoaded", function () {
     return;
   }
 
-  if (Notification.permission !== "granted") Notification.requestPermission();
+  navigator.serviceWorker.register("sw.js");
+
+  Notification.requestPermission(function (result) {
+    if (result === "granted") {
+      navigator.serviceWorker.ready.then(function (registration) {
+        registration.showNotification("Notification with ServiceWorker");
+      });
+    }
+  });
 });
 
 var audio = new Audio("notify.mp3");
