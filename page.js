@@ -1,5 +1,5 @@
 var vaccine_master = {
-  date: "11-05-2021",
+  date: getDate(),
   pincode: "",
   centername: "",
   runningcheck: false,
@@ -234,3 +234,12 @@ $("#samplenotify").click(function () {
 });
 
 console.log("Script v1.0");
+
+function getDate() {
+  var today = new Date();
+  var dd = String(today.getDate()).padStart(2, "0");
+  var mm = String(today.getMonth() + 1).padStart(2, "0");
+  var yyyy = today.getFullYear();
+
+  return dd + "-" + mm + "-" + yyyy;
+}
