@@ -12,7 +12,7 @@ function main() {
   console.log("ajax request to the resource which will require cors enabled");
   var notification = new Notification("Notification title", {
     icon: "http://cdn.sstatic.net/stackexchange/img/logos/so/so-icon.png",
-    body: "Hey there! You've been notified!",
+    body: "Hey sdsds there! You've been notified!",
   });
   //   Notification.requestPermission().then(function (result) {
   //     console.log(result);
@@ -41,7 +41,7 @@ function notifyMe() {
   else {
     var notification = new Notification("Notification title", {
       icon: "http://cdn.sstatic.net/stackexchange/img/logos/so/so-icon.png",
-      body: "Hey there! You've been notified!",
+      body: "Hey sdsd there! You've been notified!",
     });
     notification.onclick = function () {
       window.open("http://stackoverflow.com/a/13328397/1269037");
