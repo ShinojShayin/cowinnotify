@@ -227,9 +227,10 @@ document.addEventListener("DOMContentLoaded", function () {
 var audio = new Audio("notify.mp3");
 
 function notifyuser(centername, available, vaccinetype, payment) {
+  const title = "Vaccine Available at " + centername;
   $("title").html("Vaccine Available!!!");
   audio.play();
-  var notification = new Notification("Vaccine Available at " + centername, {
+  var notification = new Notification(title, {
     icon: "vicon.png",
     body:
       " Availabile: " +
@@ -239,6 +240,11 @@ function notifyuser(centername, available, vaccinetype, payment) {
       " Fee-Type:" +
       payment,
   });
+
+  const options = {
+    icon: "vicon.png",
+  };
+  reg.showNotification(title, options);
 }
 
 $("#samplenotify").click(function () {
