@@ -1,6 +1,6 @@
 # Cowin Notify (Browser-Based Notification only)
 
-## A simple vaccine availability monitor for web-browser.
+## A simple indian pincode based vaccine availability monitor for web-browser.
 
 This website use [CoWIN](https://www.cowin.gov.in/home) India API to monitor vaccine availability in india.
 
