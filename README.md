@@ -17,3 +17,5 @@ This website use [CoWIN](https://www.cowin.gov.in/home) India API to monitor vac
 - Once checking/monitoring is started it will print the report of availability status in the screen real-time
 - If vaccine is found to be available it will play a alert song along with it will trigger a browser notification (Work better in Chrome) 
 
+![alt text](https://raw.githubusercontent.com/ShinojShayin/cowinnotify/main/vicon.png)
+
