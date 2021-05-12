@@ -9,7 +9,7 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
   <style>
-    .green{color: green}
+    .green{ color: green !important}
 	#log-area{
 		border: 1px solid #cdcdcd;
 		height: 500px;
@@ -59,6 +59,40 @@
 	<div id="log-area">
 	Monitoring Details Printed here once you start notifier
 	<div>
+  </div>
+</div>
+
+
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+  Launch demo modal
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h2 class="modal-title green" id="myModalLabel">Vaccine Available!!</h2>
+      </div>
+      <div class="modal-body">
+        <table class="table table-striped"> 
+          <tr><td>Center Name</td> <td id="vc_centername">XYZ Center</td></tr>
+          <tr><td>Address</td> <td id="vc_address">IDDAPURA PHC, NEAR SHELL PETROL BUNK</td></tr>
+          <tr><td>State</td> <td id="vc_state">Karnataka</td></tr>
+          <tr><td>Date</td> <td  id="vc_date">XYZ Center</td></tr>
+          <tr><td>Fee Type</td> <td id="vc_ftype">Free</td></tr>
+          <tr><td>Availability</td> <td id="vc_availability">Free</td></tr>
+          <tr><td>Vaccine</td> <td id="vc_vaccine">Free</td></tr>
+          <tr><td>Vaccine Fee</td> <td id="vc_vaccine_fee">Free</td></tr>
+          <tr><td>Booking Link</td> <td><a href="https://selfregistration.cowin.gov.in/" target="_blank">https://selfregistration.cowin.gov.in/</a></td></tr>
+        </table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
   </div>
 </div>
 

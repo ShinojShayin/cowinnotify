@@ -54,7 +54,8 @@ var vcheckLogic = function () {
                 available,
                 vaccineType,
                 e.fee_type,
-                avalableDate
+                avalableDate,
+                e
               );
               break;
             }
@@ -83,7 +84,8 @@ var vcheckLogic = function () {
               available,
               vaccineType,
               e.fee_type,
-              avalableDate
+              avalableDate,
+              e
             );
             break;
           }
@@ -250,7 +252,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 var audio = new Audio("notify.mp3");
 
-function notifyuser(centername, available, vaccinetype, payment) {
+function notifyuser(centername, available, vaccinetype, payment, centerdtls) {
   const title = "Vaccine Available at " + centername;
   $("title").html("Vaccine Available!!!");
   audio.play();
@@ -264,10 +266,73 @@ function notifyuser(centername, available, vaccinetype, payment) {
       " Fee-Type:" +
       payment,
   });
+  console.log(JSON.stringify(centerdtls));
+  var sessionAry = centerdtls.sessions;
+  var session = null;
+  for (var i = 0; i < sessionAry.length; i++) {
+    var ss = sessionAry[i];
+    if (ss.available_capacity > 0) {
+      session = ss;
+      break;
+    }
+  }
+
+  var vcType = centerdtls.vaccine_fees;
+
+  for (var i = 0; i < vcType.length; i++) {
+    if (vcType[i].vaccine === session.vaccine) {
+      vcType = vcType[i].fee;
+      break;
+    }
+  }
+  $("#myModal").modal("show");
+  $("#vc_centername").text(centerdtls.name);
+  $("#vc_address").html(centerdtls.address);
+  $("#vc_state").html(centerdtls.state_name);
+  $("#vc_date").html(session.date);
+  $("#vc_ftype").html(centerdtls.fee_type);
+  $("#vc_availability").html(session.available_capacity);
+  $("#vc_vaccine").html(session.vaccine);
+  $("#vc_vaccine_fee").html(vcType);
 }
 
 $("#samplenotify").click(function () {
-  notifyuser("XYZ Hospital", 11, "Covishield", "Free");
+  notifyuser("XYZ Hospital", 11, "Covishield", "Free", {
+    center_id: 569247,
+    name: "MANIPAL WHITEFIELD COVAXIN",
+    address: "NO143212-215 EPIP Industrial Area Hoodi VillageKR Puram",
+    state_name: "Karnataka",
+    district_name: "BBMP",
+    block_name: "Mahadevapura",
+    pincode: 560066,
+    lat: 12,
+    long: 77,
+    from: "10:00:00",
+    to: "16:00:00",
+    fee_type: "Paid",
+    sessions: [
+      {
+        session_id: "7f9db589-d3cc-4f91-beb4-d0a30e20adef",
+        date: "12-05-2021",
+        available_capacity: 1,
+        min_age_limit: 18,
+        vaccine: "COVAXIN",
+        slots: [
+          "10:00AM-11:00AM",
+          "11:00AM-12:00PM",
+          "12:00PM-01:00PM",
+          "01:00PM-04:00PM",
+        ],
+      },
+    ],
+    vaccine_fees: [
+      {
+        vaccine: "COVAXIN",
+        fee: "1350",
+      },
+    ],
+  });
+
   setTimeout(function () {
     resetTitle();
   }, 3000);
@@ -283,3 +348,29 @@ function getDate() {
 
   return dd + "-" + mm + "-" + yyyy;
 }
+
+self.addEventListener("notificationclick", function (event) {
+  console.log("On notification click: ", event.notification.tag);
+  event.notification.close();
+
+  // This looks to see if the current is already open and
+  // focuses if it is
+  event.waitUntil(
+    clients
+      .matchAll({
+        type: "window",
+      })
+      .then(function (clientList) {
+        for (var i = 0; i < clientList.length; i++) {
+          var client = clientList[i];
+          if (
+            client.url == "https://selfregistration.cowin.gov.in/" &&
+            "focus" in client
+          )
+            return client.focus();
+        }
+        if (clients.openWindow)
+          return clients.openWindow("https://selfregistration.cowin.gov.in/");
+      })
+  );
+});
