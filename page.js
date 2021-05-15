@@ -312,7 +312,7 @@ $("#clearlogs").click(function () {
 });
 
 $("#samplenotify").click(function () {
-  notifyuser("YZ Hospital", 11, "Covishield", "Free", {
+  notifyuser("XYZ Hospital", 11, "Covishield", "Free", {
     center_id: 569247,
     name: "MANIPAL WHITEFIELD COVAXIN",
     address: "NO143212-215 EPIP Industrial Area Hoodi VillageKR Puram",
