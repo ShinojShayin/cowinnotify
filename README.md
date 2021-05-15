@@ -8,7 +8,11 @@ This website use [CoWIN](https://www.cowin.gov.in/home) India API to monitor vac
 
 > Latest Desktop Chrome browser (Tested only in this now)
 
-## How to use
+## How does it works?
+
+Nothing complicated its really simple actually I have only used HTML and Javascript to build this website along with I am using Co-WIN Public APIs to interact with government servers. These API's are open for public developer community to interact basically anyone can do this, and govt encourage people to create new solution with these API's. Checkout [here](https://apisetu.gov.in/public/api/cowin)
+
+## How to use?
 - Go to [https://shinojshayin.github.io/cowinnotify/](https://shinojshayin.github.io/cowinnotify/)
 - When the website load it will initially ask for show notification permission please allow it
 ![alt text](https://raw.githubusercontent.com/ShinojShayin/cowinnotify/main/allowpermission.png)
