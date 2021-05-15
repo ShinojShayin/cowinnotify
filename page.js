@@ -117,18 +117,22 @@ $("#vchecker").click(function () {
       lognow("Started CoWin Notifier....");
       vchecker = setInterval(vcheckLogic, interval);
     } else {
-      resetTitle();
-      $("#pincode").attr("disabled", false);
-      $("#interval").attr("disabled", false);
-      $("#vcenter").attr("disabled", false);
-      $(this).html("Start Checking");
-      vaccine_master.runningcheck = false;
-      if (vchecker) clearInterval(vchecker);
+      disableMonitoring();
     }
   } else {
     alert("Provide valid pincode");
   }
 });
+
+function disableMonitoring() {
+  resetTitle();
+  $("#pincode").attr("disabled", false);
+  $("#interval").attr("disabled", false);
+  $("#vcenter").attr("disabled", false);
+  $("#vchecker").html("Start Checking");
+  vaccine_master.runningcheck = false;
+  if (vchecker) clearInterval(vchecker);
+}
 
 function validatePIN(pin) {
   return /^(\d{6})$/.test(pin);
@@ -254,6 +258,13 @@ var audio = new Audio("notify.mp3");
 
 function notifyuser(centername, available, vaccinetype, payment, centerdtls) {
   const title = "Vaccine Available at " + centername;
+
+  if (centername.indexOf("XYZ") == -1) {
+    disableMonitoring();
+    lognow(title);
+    lognow("Stopping Monitoring.");
+  }
+
   $("title").html("Vaccine Available!!!");
   audio.play();
   var notification = new Notification(title, {
@@ -296,8 +307,12 @@ function notifyuser(centername, available, vaccinetype, payment, centerdtls) {
   $("#vc_vaccine_fee").html(vcType);
 }
 
+$("#clearlogs").click(function () {
+  logDiv.html("");
+});
+
 $("#samplenotify").click(function () {
-  notifyuser("XYZ Hospital", 11, "Covishield", "Free", {
+  notifyuser("YZ Hospital", 11, "Covishield", "Free", {
     center_id: 569247,
     name: "MANIPAL WHITEFIELD COVAXIN",
     address: "NO143212-215 EPIP Industrial Area Hoodi VillageKR Puram",

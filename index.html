@@ -22,6 +22,11 @@
 #samplenotify{
   margin-left: 20px;
 }
+#clearlogs{
+  position: absolute;
+  top: 2%;
+  right: 3%;
+}
   </style>
 </head>
 <body>
@@ -58,9 +63,14 @@
     </div>
     <button id="vchecker" class="btn btn-primary mg-l-15">Start Checking</button>
     <button id="samplenotify" class="btn btn-default" title="If vaccine available following notification action will be perform! please click">Sample Notification</button>
-	<div id="log-area">
-	Monitoring Details Printed here once you start notifier
-	<div>
+   <br>
+   <div style="position: relative;">
+      <div id="log-area">
+        Monitoring Details Printed here once you start notifier
+      </div>
+     <button id="clearlogs" class="btn btn-default">Clear logs</button>
+   </div>
+	
   </div>
 </div>
 
