@@ -1,3 +1,5 @@
+console.log("Script v1.2");
+
 var vaccine_master = {
   date: getDate(),
   pincode: "",
@@ -49,14 +51,7 @@ var vcheckLogic = function () {
             available = e.sessions[i].available_capacity;
             avalableDate = e.sessions[i].date;
             if (e.sessions[i].available_capacity > 0) {
-              notifyuser(
-                centername,
-                available,
-                vaccineType,
-                e.fee_type,
-                avalableDate,
-                e
-              );
+              notifyuser(centername, available, vaccineType, e.fee_type, e);
               break;
             }
           }
@@ -79,14 +74,7 @@ var vcheckLogic = function () {
           available = e.sessions[i].available_capacity;
           avalableDate = e.sessions[i].date;
           if (e.sessions[i].available_capacity > 0) {
-            notifyuser(
-              centername,
-              available,
-              vaccineType,
-              e.fee_type,
-              avalableDate,
-              e
-            );
+            notifyuser(centername, available, vaccineType, e.fee_type, e);
             break;
           }
         }
@@ -261,7 +249,7 @@ function notifyuser(centername, available, vaccinetype, payment, centerdtls) {
 
   if (centername.indexOf("XYZ") == -1) {
     disableMonitoring();
-    lognow(title);
+    lognow("<strong class='green'>" + title + "</strong>");
     lognow("Stopping Monitoring.");
   }
 
@@ -277,7 +265,7 @@ function notifyuser(centername, available, vaccinetype, payment, centerdtls) {
       " Fee-Type:" +
       payment,
   });
-  console.log(JSON.stringify(centerdtls));
+  console.log("detls: " + JSON.stringify(centerdtls));
   var sessionAry = centerdtls.sessions;
   var session = null;
   for (var i = 0; i < sessionAry.length; i++) {
@@ -296,7 +284,7 @@ function notifyuser(centername, available, vaccinetype, payment, centerdtls) {
       break;
     }
   }
-  $("#myModal").modal("show");
+
   $("#vc_centername").text(centerdtls.name);
   $("#vc_address").html(centerdtls.address);
   $("#vc_state").html(centerdtls.state_name);
@@ -305,6 +293,12 @@ function notifyuser(centername, available, vaccinetype, payment, centerdtls) {
   $("#vc_availability").html(session.available_capacity);
   $("#vc_vaccine").html(session.vaccine);
   $("#vc_vaccine_fee").html(vcType);
+
+  $("#vc_popup").on("shown", function () {
+    $("body").css("position", "fixed");
+  });
+
+  $("#vc_popup").modal("show");
 }
 
 $("#clearlogs").click(function () {
@@ -352,8 +346,6 @@ $("#samplenotify").click(function () {
     resetTitle();
   }, 3000);
 });
-
-console.log("Script v1.0");
 
 function getDate() {
   var today = new Date();
